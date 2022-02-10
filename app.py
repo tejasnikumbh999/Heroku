@@ -24,7 +24,6 @@ server = app.server
 # visit http://127.0.0.1:8050/ in your web browser.
  
 url="https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv"
-import pandas as pd
 data=pd.read_csv(url)                                #import external data
 d1=data.groupby("iso_code",as_index=False)['total_cases'].max()
 d1 = d1.dropna(subset=['total_cases'])
