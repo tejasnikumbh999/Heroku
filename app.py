@@ -70,7 +70,6 @@ app.layout = html.Div(children=[
        figure=fig
    )
 ])
-  app.run_server(mode="external")
- 
+app.run_server(mode="external")
 if __name__ == '__main__':
-    app.run_server(debug=True)
+ app.run_server(debug=True)
