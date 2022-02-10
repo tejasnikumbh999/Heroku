@@ -3,6 +3,11 @@ import dash_auth
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
+import pandas as pd
+#import dash
+from jupyter_dash import JupyterDash
+import plotly.express as px
+import pandas as pd
  
 USERNAME_PASSWORD_PAIRS = [
     ['nethu', '12345'],['guvi', 'guvi'],['tejas', 'tejas']
@@ -36,16 +41,6 @@ fig.update_layout(
    paper_bgcolor=colors['background'],
    font_color=colors['text']
 )
- 
-#import dash
-from jupyter_dash import JupyterDash
-import dash_core_components as dcc
-import dash_html_components as html
-import plotly.express as px
-import pandas as pd
- 
-#app = dash.Dash(__name__)
-app = JupyterDash(__name__)
  
 colors = {
    'background': '#4FE377',
