@@ -15,15 +15,15 @@ auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 server = app.server
  
 url="https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv"
-data=pd.read_csv(url)                                #import external data
+data=pd.read_csv(url)                               
 d1=data.groupby("iso_code",as_index=False)['total_cases'].max()
 d1 = d1.dropna(subset=['total_cases'])
 d1
 
 fig = px.scatter_geo(d1, locations="iso_code",
-                    size="total_cases", # size of markers, "total_cases" is one of the columns of covid data
-                    color="iso_code", # which column to use to set the color of markers
-                    hover_name="iso_code", # column added to hover information
+                    size="total_cases", 
+                    color="iso_code", 
+                    hover_name="iso_code",
                      )
 fig.update_layout(
    plot_bgcolor=colors['background'],
