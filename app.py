@@ -11,10 +11,6 @@ app = dash.Dash()
 auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 server = app.server
 
-import dash
-from dash.dependencies import Input, Output, State
-from dash import dcc, html
-
 app.layout = html.Div([
    html.Div('Convert Temperature'),
    'Celsius',
