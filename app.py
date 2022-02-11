@@ -12,22 +12,45 @@ app = dash.Dash()
 auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 server = app.server
  
+from jupyter_dash import JupyterDash
+import dash
+from dash.dependencies import Input, Output, State
+from dash import dcc, html
+external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
+ 
+#app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = JupyterDash(__name__,external_stylesheets=external_stylesheets)
+ 
 app.layout = html.Div([
-    dcc.RangeSlider(
-        id='range-slider',
-        min=-5,
-        max=6,
-        marks={i:str(i) for i in range(-5, 7)},
-        value=[-3, 4]
-    ),
-    html.H1(id='product')  # this is the output
-], style={'width':'50%'})
+   html.Div('Convert Temperature'),
+   'Celsius',
+   dcc.Input(
+       id="celsius",
+       value=0.0,
+       type="number"
+   ),
+   ' = Fahrenheit',
+   dcc.Input(
+       id="fahrenheit",
+       value=32.0,
+       type="number",
+   ),
+])
  
 @app.callback(
-    Output('product', 'children'),
-    [Input('range-slider', 'value')])
-def update_value(value_list):
-    return value_list[0]*value_list[1]
+   Output("celsius", "value"),
+   Output("fahrenheit", "value"),
+   Input("celsius", "value"),
+   Input("fahrenheit", "value"),
+)
+def sync_input(celsius, fahrenheit):
+   ctx = dash.callback_context
+   input_id = ctx.triggered[0]["prop_id"].split(".")[0]
+   if input_id == "celsius":
+       fahrenheit= None if celsius is None else (float(celsius) * 9/5) + 32
+   else:
+       celsius = None if fahrenheit is None else (float(fahrenheit) - 32) * 5/9
+   return celsius, fahrenheit
  
 if __name__ == '__main__':
     app.run_server(debug=True)
