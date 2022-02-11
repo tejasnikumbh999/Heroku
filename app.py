@@ -11,23 +11,20 @@ USERNAME_PASSWORD_PAIRS = [
 app = dash.Dash()
 auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 server = app.server
- 
+
 app.layout = html.Div([
-    dcc.RangeSlider(
-        id='range-slider',
-        min=-5,
-        max=6,
-        marks={i:str(i) for i in range(-5, 7)},
-        value=[-3, 4]
-    ),
-    html.H1(id='product')  # this is the output
-], style={'width':'50%'})
+   html.Button("Download Text", id="btn-download"),
+   dcc.Download(id="download-text")
+])
  
 @app.callback(
-    Output('product', 'children'),
-    [Input('range-slider', 'value')])
-def update_value(value_list):
-    return value_list[0]*value_list[1]
+   Output("download-text", "data"),
+   Input("btn-download", "n_clicks"),
+   prevent_initial_call=True,
+)
+def func(n_clicks):
+   return dict(content="Hello world!", filename="hello.txt")
  
-if __name__ == '__main__':
-    app.run_server(debug=True)
+ 
+if __name__ == "__main__":
+   app.run_server(debug=True)
