@@ -2,7 +2,7 @@ import dash
 import dash_auth
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output,state
  
 USERNAME_PASSWORD_PAIRS = [
     ['nethu', '12345'],['guvi', 'guvi']
@@ -11,15 +11,8 @@ USERNAME_PASSWORD_PAIRS = [
 app = dash.Dash()
 auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 server = app.server
- 
-from jupyter_dash import JupyterDash
-import dash
-from dash.dependencies import Input, Output, State
-from dash import dcc, html
+
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
- 
-#app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-app = JupyterDash(__name__,external_stylesheets=external_stylesheets)
  
 app.layout = html.Div([
    html.Div('Convert Temperature'),
