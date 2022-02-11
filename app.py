@@ -7,7 +7,9 @@ from dash.dependencies import Input, Output, State
 USERNAME_PASSWORD_PAIRS = [
     ['nethu', '12345'],['guvi', 'guvi']
 ]
- 
+
+external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
+
 app = dash.Dash()
 auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 server = app.server
