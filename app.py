@@ -33,8 +33,8 @@ app.layout = html.Div([
 @app.callback(
    Output("celsius", "value"),
    Output("fahrenheit", "value"),
-   Input("celsius", "value"),
-   Input("fahrenheit", "value"),
+   [Input("celsius", "value"),
+   Input("fahrenheit", "value")]
 )
 def sync_input(celsius, fahrenheit):
    ctx = dash.callback_context
