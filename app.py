@@ -1,5 +1,3 @@
-import plotly.express as px
-import pandas as pd
 import dash
 import dash_auth
 import dash_core_components as dcc
