@@ -8,7 +8,7 @@ USERNAME_PASSWORD_PAIRS = [
     ['nethu', '12345'],['guvi', 'guvi']
 ]
  
-app = dash.Dash(
+app = dash.Dash()
 auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 server = app.server
 
@@ -44,4 +44,4 @@ def sync_input(celsius, fahrenheit):
    return celsius, fahrenheit
  
 if __name__ == "__main__":
-   app.run_server(debug=True)
+ app.run_server(debug=True)
